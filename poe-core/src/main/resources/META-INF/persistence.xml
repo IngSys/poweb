@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="poeJpa"
+		transaction-type="RESOURCE_LOCAL ">
+
+		<class>pe.org.pub.eess.poe.domain.Personareferencia</class>
+		<class>pe.org.pub.eess.poe.domain.Admision</class>
+		<class>pe.org.pub.eess.poe.domain.Basedx</class>
+		<class>pe.org.pub.eess.poe.domain.Cie10</class>
+		<class>pe.org.pub.eess.poe.domain.CieOM</class>
+		<class>pe.org.pub.eess.poe.domain.CieOT</class>
+		<class>pe.org.pub.eess.poe.domain.Defuncion</class>
+		<class>pe.org.pub.eess.poe.domain.Departamento</class>
+		<class>pe.org.pub.eess.poe.domain.Detalletratamiento</class>
+		<class>pe.org.pub.eess.poe.domain.Diagnosticohospital</class>
+		<class>pe.org.pub.eess.poe.domain.Diagnosticoreferencia</class>
+		<class>pe.org.pub.eess.poe.domain.Distrito</class>
+		<class>pe.org.pub.eess.poe.domain.Enfermedad</class>
+		<class>pe.org.pub.eess.poe.domain.Establecimientosalud</class>
+		<class>pe.org.pub.eess.poe.domain.Medico</class>
+		<class>pe.org.pub.eess.poe.domain.Metodoprimerdx</class>
+		<class>pe.org.pub.eess.poe.domain.Paciente</class>
+		<class>pe.org.pub.eess.poe.domain.Provincia</class>
+		<class>pe.org.pub.eess.poe.domain.Servicio</class>
+		<class>pe.org.pub.eess.poe.domain.Status</class>
+		<class>pe.org.pub.eess.poe.domain.Tipocancer</class>
+		<class>pe.org.pub.eess.poe.domain.Tratamiento</class>
+		<class>pe.org.pub.eess.poe.domain.Ubigeo</class>
+		<class>pe.org.pub.eess.poe.domain.Usuario</class>
+
+		<properties>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+		</properties>
+		
+	</persistence-unit>
+</persistence>

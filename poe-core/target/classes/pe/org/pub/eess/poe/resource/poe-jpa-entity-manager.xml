@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	
+	<!-- Transaction Management -->
+	<bean id="poeTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="poeDS" />
+		<property name="entityManagerFactory" ref="poeEntityManagerFactory" />
+		<qualifier value="poeTM"/>
+	</bean>
+	
+	<!-- Recognizing Transaction Notations for Unit Test only -->
+	<tx:annotation-driven transaction-manager="poeTransactionManager" />
+
+	<!-- Setup JPA -->
+	<bean id="poeEntityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="poeDS" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/poe-persistence.xml"/>
+		<property name="persistenceUnitName" value="poeJpa"></property>
+		<property name="jpaProperties">
+	        <props>
+	            <prop key="hibernate.validator.apply_to_ddl">false</prop>
+	            <prop key="hibernate.validator.autoregister_listeners">false</prop>
+	        </props>
+    	</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${jpa.showSql}"></property>
+				<property name="generateDdl" value="${jpa.generateDdl}"></property>
+				<property name="databasePlatform" value="${hibernate.dialect}"></property>
+			</bean>
+		</property>
+		
+	</bean>
+
+	<!-- Spring acting as JPA container for creation of Entity Manager -->
+	<!-- Annotation @PersistenceContext would be recognized -->
+	<bean id="poePersistenceAnnotation"
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+		
+    <!-- 
+	<bean id="fonafeJpaTemplate" class="org.springframework.orm.jpa.JpaTemplate">
+		<property name="entityManagerFactory" ref="fonafeEntityManagerFactory" />
+	</bean>
+ -->
+</beans>
